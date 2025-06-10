@@ -1,0 +1,11 @@
+@theme{
+    --color-background-primary: #FCEF91;
+    --color-background-secondary: #E6521F;
+    --color-text: #EA2F14;
+    --color-accent: #FB9E3A;
+
+    --color-element-background-primary: #5A827E;
+    --color-element-background-secondary: #B9D4AA;
+    --color-element-text: #FAFFCA;
+    --color-element-accent: #84AE92;
+}
