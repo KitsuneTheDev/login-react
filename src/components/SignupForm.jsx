@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-function SignupForm() {
+function SignupForm() {}
+
+SignupForm.Mobile = () => {
 
     const [checked, setChecked] = useState(false);
     
@@ -53,6 +55,52 @@ function SignupForm() {
                         </span>
                     Google</button>
                 </div>
+            </div>
+        </div>
+    );
+}
+
+SignupForm.Default =  () => {
+
+    const [checked, setChecked] = useState(false);
+    
+    return(
+        <div className="outer-container w-full h-full">
+            <div className="banner-container hidden"></div>
+            <div className="form-container w-full h-full">
+                <div className="info-container h-[10%] w-full flex flex-col pl-[4%]">
+                    <h2 className="pt-[4%] text-text text-3xl font-bold">Create an account</h2>
+                    <p className="pt-[2%] text-text">Already have an account? <span className="underline hover:cursor-pointer">Log in</span></p>
+                </div>
+                <div className="form-container pt-[4%]">
+                    <div className="user-name-container flex justify-center">
+                        <div className="first-name-container w-[50%] pl-[4%] pr-[4%]">
+                            <input type="text" placeholder="First Name"
+                            className="placeholder-background-primary bg-background-secondary h-10 w-full rounded-lg pl-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary" />
+                        </div>
+                        <div className="last-name-container w-[50%] pl-[4%] pr-[4%]">
+                            <input type="text" placeholder="Last Name"
+                            className="placeholder-background-primary bg-background-secondary h-10 w-full rounded-lg pl-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary" />
+                        </div>
+                    </div>
+                    <div className="user-email-container w-full pt-[4%] flex justify-center">
+                        <input type="email" placeholder="Email"
+                        className="placeholder-background-primary bg-background-secondary h-10 w-[calc(100%-8%)] rounded-lg pl-[4%] pr-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary" />
+                    </div>
+                    <div className="user-password-container w-full pt-[4%] flex justify-center">
+                        <input type="password" placeholder="Password"
+                        className="placeholder-background-primary bg-background-secondary h-10 w-[calc(100%-8%)] rounded-lg pl-[4%] pr-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary" />
+                    </div>
+                    <div className="terms-conditions-container h-10 pt-[4%]">
+                        <label htmlFor="tncCheckbox" className="flex justify-start items-center pl-[4%] gap-[2%] hover:cursor-pointer" onClick={() => setChecked(prev => !prev)}>
+                            <span className="w-4 h-4 inline-block rounded-sm bg-background-secondary relative"><input type="checkbox" name="terms conditions checkbox" id="tncCheckbox"
+                            className="hidden" />{checked &&  <span className="tick absolute bottom-0 translate-y-1 text-green-600 font-bold text-2xl">&#10003;</span>}</span>
+                            <span className="text-text font-medium">I agree to the <a href="#" className="text-text">terms & conditions</a></span>
+                        </label>
+                    </div>
+                    <div className="submit-button-container"></div>
+                </div>
+                <div className="signup-with-container"></div>
             </div>
         </div>
     );

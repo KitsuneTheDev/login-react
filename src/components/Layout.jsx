@@ -4,16 +4,16 @@ import SignupForm from './SignupForm.jsx';
 
 function Layout() {
 
-    // const isMobile = /mobile/i.test(navigator.userAgent);
+    const isMobile = /mobile/i.test(navigator.userAgent);
     console.log("isMobile -->", /*isMobile,*/ /mobile/i.test(navigator.userAgent), "device type is -->", navigator.userAgent);
     
     return(
         <div className='min-h-[100%] min-w-[100%] h-[100%] w-[100%] box-border'>
             <header className="bg-background-secondary w-full h-[8%]">
-                {/*isMobile ? <Navbar.Mobile /> : <Navbar.Default />*/} <Navbar.Default />
+                {isMobile ? <Navbar.Mobile /> : <Navbar.Default />}
             </header>
             <main className="bg-background-primary w-full h-[86.2%]">
-                {<SignupForm />}
+                {isMobile ? <SignupForm.Mobile /> : <SignupForm.Default />}
             </main>
             <footer className="bg-background-secondary w-full h-[5.8%] border-t-1 border-accent flex justify-between">
                 <span className='text-element-text text-xs pl-[4%] pt-[4%] h-full text-background-primary font-medium'>© 2025 Kitsu. All rights reserved.</span>

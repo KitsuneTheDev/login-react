@@ -2,10 +2,19 @@ function Navbar() {};
 
 Navbar.Default = () => {
     return(
-        <div className="navbar-contaier w-[100%] h-[100%] flex">
-            <div></div>
-            <div></div>
-            <div></div>
+        <div className="navbar-contaier w-full h-full flex">
+            <div className="name-container relative w-[10%]" >
+                <h1 className="absolute left-[8%] top-[16%] text-3xl font-bold text-background-primary">KITSU</h1>
+            </div>
+            <div className="navbar-elements w-[80%]">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div className="misc-container w-[10%]"></div>
         </div>
     );
 }
