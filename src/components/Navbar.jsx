@@ -2,9 +2,11 @@ function Navbar() {};
 
 Navbar.Default = () => {
     return(
-        <div className="navbar-contaier w-full h-full flex">
+        <div className="navbar-contaier w-full h-full flex
+        lg:bg-background-primary">
             <div className="name-container relative w-[10%]" >
-                <h1 className="absolute left-[8%] top-[16%] text-3xl font-bold text-background-primary">KITSU</h1>
+                <h1 className="absolute left-[8%] top-[16%] text-3xl font-bold text-background-primary
+                lg:text-background-secondary">KITSU</h1>
             </div>
             <div className="navbar-elements w-[80%]">
                 <ul>
@@ -32,10 +34,10 @@ Navbar.Mobile = () => {
             </div>
             <div className="misc-container w-[20%] h-full flex justify-end pt-[2.4%] pr-[4.8%]">
                 <div className="cog-container relative bg-background-primary h-8 w-8 rounded-full">
-                    <span className="cog-outer-element absolute bg-background-primary rounded-xl h-10 w-2 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></span>
-                    <span className="cog-outer-element absolute bg-background-primary rounded-xl h-10 w-2 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-60"></span>
-                    <span className="cog-outer-element absolute bg-background-primary rounded-xl h-10 w-2 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-300"></span>
-                    <span className="cog-center absolute h-3 w-3 left-1/2 top-1/2 -translate-x-1/2  -translate-y-1/2 bg-background-secondary rounded-full"></span>
+                    <span className="cog-outer-element absolute bg-background-primary rounded-md h-[2.35rem] w-2 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></span>
+                    <span className="cog-outer-element absolute bg-background-primary rounded-md h-[2.35rem] w-2 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-60"></span>
+                    <span className="cog-outer-element absolute bg-background-primary rounded-md h-[2.35rem] w-2 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-300"></span>
+                    <span className="cog-center absolute h-5 w-5 left-1/2 top-1/2 -translate-x-1/2  -translate-y-1/2 bg-background-secondary rounded-full"></span>
                 </div>
             </div>
         </div>
