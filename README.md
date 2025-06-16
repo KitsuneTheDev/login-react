@@ -19,7 +19,7 @@ The design adapts across different screen sizes:
 
 * Mobile Devices
 
-[!Mobile Design](./src/assets/demo/mobilesignupform.png)
+[!Mobile Design] (./src/assets/demo/mobilesignupform.png)
 
 * Web - Mobile
 
