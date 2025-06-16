@@ -19,19 +19,19 @@ The design adapts across different screen sizes:
 
 * Mobile Devices
 
-[!Mobile Design] (./src/assets/demo/mobilesignupform.png)
+![Mobile Design](./src/assets/demo/mobilesignupform.png)
 
 * Web - Mobile
 
-[!Web Small Design](./src/assets/demo/webLookSm.png)
+![Web Small Design](./src/assets/demo/webLookSm.png)
 
 * Web - Tablet
 
-[!Web Medium Design](./src/assets/demo/webLookMd.png)
+![Web Medium Design](./src/assets/demo/webLookMd.png)
 
 * Web - Desktop
 
-[!Web Large Design](./src/assets/demo/webLookLg.png)
+![Web Large Design](./src/assets/demo/webLookLg.png)
 
 ## 🛠️ Technologies
 
