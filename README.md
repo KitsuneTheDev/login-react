@@ -41,6 +41,7 @@ The design adapts across different screen sizes:
 
 ## 📂 Folder Structure
 
+```
 src/
 ├── components/
 │ ├── SignupForm.jsx
@@ -48,10 +49,7 @@ src/
 │ └── SignupForm.Default.jsx
 ├── App.jsx
 └── index.js
-
-markdown
-Kopyala
-Düzenle
+```
 
 ## ⚙️ Setup
 
