@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import CustomCheckbox from "./CustomCheckbox.jsx";
+import { useFormLogic } from '../hooks/useFormLogic.js';
 
 function SignupForm() {}
 
 SignupForm.Mobile = () => {
 
-    const [checked, setChecked] = useState(false);
+    const { checked, toggleChecked, updateFirstName, firstNameError } = useFormLogic();
     
     return(
         <div className="signup-container h-full w-full bg-background-primary flex flex-col justify-center items-center">
@@ -33,7 +34,7 @@ SignupForm.Mobile = () => {
                         className="bg-background-secondary h-10 rounded-lg w-full placeholder-background-primary pl-2 focus:outline-2 focus:outline-background-secondary/70"/>
                 </div>
                 <div className="terms-conditions-container pt-4">
-                    <CustomCheckbox checked={checked} onChange={() => {setChecked(prev => !prev)}} >
+                    <CustomCheckbox checked={checked} onChange={() => toggleChecked()} >
                         <span className="text-text font-medium">I agree to the <a href="#" className="underline underline-offset-2">terms & conditions.</a></span>
                     </CustomCheckbox>
                 </div>
@@ -61,7 +62,7 @@ SignupForm.Mobile = () => {
 
 SignupForm.Default =  () => {
 
-    const [checked, setChecked] = useState(false);
+    const {checked, toggleChecked, updateFirstName, firstNameError} = useFormLogic();
     
     return(
         <div className="outer-container w-full h-full lg:w-[80%] lg:h-[80%] lg:bg-background-primary
@@ -80,10 +81,13 @@ SignupForm.Default =  () => {
                 <div className="form-container pt-[4%] w-full">
                     <div className="user-name-container flex justify-center
                     lg:p-0 lg:gap-[1%]">
-                        <div className="first-name-container w-[50%] pl-[4%] pr-[4%]
+                        <div className="first-name-container relative w-[50%] pl-[4%] pr-[4%]
                         lg:w-[25%] lg:p-0">
-                            <input type="text" placeholder="First Name" name="first name input"
+                            <input type="text" placeholder="First Name" name="first name input" onChange={(event) => {
+                                updateFirstName(event.target.value)}}
                             className="placeholder-background-primary bg-background-secondary h-10 w-full rounded-lg pl-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary" />
+                            <span className="absolute w-full h-10 border-1 text-center border-background-secondary text-sm bg-red-400 left-0 bottom-0 translate-y-[90%] rounded-xl"
+                            style={{display: `${firstNameError === true || !firstNameError ? `none` : `block`}`}}>{firstNameError}</span>
                         </div>
                         <div className="last-name-container w-[50%] pl-[4%] pr-[4%] lg:w-[25%] lg:p-0">
                             <input type="text" placeholder="Last Name" name="last name input"
@@ -102,7 +106,7 @@ SignupForm.Default =  () => {
                     </div>
                     <div className="terms-conditions-container h-10 pt-[4%] pl-[4%]
                     lg:pl-[24.5%]">
-                        <CustomCheckbox checked={checked} onChange={() => setChecked(prev => !prev)} >
+                        <CustomCheckbox checked={checked} onChange={() => toggleChecked()} >
                             <span className="text-text font-medium">I agree to the <a href="#">terms & conditions.</a></span>
                         </CustomCheckbox>
                     </div>
