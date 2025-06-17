@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { validateFirstName } from '../utils/validate.js';
+import { validateEmail, validateFirstName, validateLastName } from '../utils/validate.js';
 
 function useFormLogic() {
 
@@ -7,11 +7,13 @@ function useFormLogic() {
     const [checked, setChecked] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [email, setemail] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     //INVALID FORM INPUT ERROR HOOKS
     const [firstNameError, setFirstNameError] = useState('');
+    const [lastNameError, setLastNameError] = useState('');
+    const [emailError, setEmailError] = useState('');
 
     const toggleChecked = () => {
         setChecked(prev => !prev);
@@ -23,16 +25,47 @@ function useFormLogic() {
     }
 
     useEffect(() => {
-        console.log("first name -->", firstName);
+        if(validateFirstName(firstName) === true) {
+            setFirstNameError('');
+            return;
+        }
         setFirstNameError(() => validateFirstName(firstName));
         console.log(firstNameError);
-    }, [firstName])
+    }, [firstName]);
+
+    const updateLastName = (userInput) => {
+        setLastName(userInput);
+    }
+
+    useEffect(() => {
+        if(validateLastName(lastName) === true) {
+            setLastNameError('');
+            return;
+        }
+        setLastNameError(() => validateLastName(lastName));
+    }, [lastName]);
+
+    const updateEmail = (userInput) => {
+        setEmail(userInput);
+    }
+
+    useEffect(() => {
+        if(validateEmail(email) === true) {
+            setEmailError('');
+            return;
+        }
+        setEmailError(() => validateEmail(email));
+    }, [email]);
 
     return {
         checked,
         toggleChecked,
         updateFirstName,
         firstNameError,
+        updateLastName,
+        lastNameError,
+        updateEmail,
+        emailError,
     };
 }
 

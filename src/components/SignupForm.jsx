@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import CustomCheckbox from "./CustomCheckbox.jsx";
+import InputError from "./InputError.jsx";
 import { useFormLogic } from '../hooks/useFormLogic.js';
 
 function SignupForm() {}
 
 SignupForm.Mobile = () => {
 
-    const { checked, toggleChecked, updateFirstName, firstNameError } = useFormLogic();
+    const { checked, toggleChecked, updateFirstName, firstNameError, updateLastName } = useFormLogic();
     
     return(
         <div className="signup-container h-full w-full bg-background-primary flex flex-col justify-center items-center">
@@ -21,7 +22,7 @@ SignupForm.Mobile = () => {
                         className="bg-background-secondary h-10 rounded-lg placeholder-background-primary pl-2 focus:outline-2 focus:outline-background-secondary/70" />
                     </div>
                     <div className="last-name-container">
-                        <input type="text" name="user last name" id="userLastName" placeholder="Last Name"
+                        <input type="text" name="user last name" id="userLastName" placeholder="Last Name" onChange={(event) => {updateLastName(event.target.value)}}
                         className="bg-background-secondary h-10 rounded-lg placeholder-background-primary pl-2 focus:outline-2 focus:outline-background-secondary/70" />
                     </div>
                 </div>
@@ -62,7 +63,7 @@ SignupForm.Mobile = () => {
 
 SignupForm.Default =  () => {
 
-    const {checked, toggleChecked, updateFirstName, firstNameError} = useFormLogic();
+    const {checked, toggleChecked, updateFirstName, firstNameError, updateLastName, lastNameError, updateEmail, emailError} = useFormLogic();
     
     return(
         <div className="outer-container w-full h-full lg:w-[80%] lg:h-[80%] lg:bg-background-primary
@@ -83,21 +84,21 @@ SignupForm.Default =  () => {
                     lg:p-0 lg:gap-[1%]">
                         <div className="first-name-container relative w-[50%] pl-[4%] pr-[4%]
                         lg:w-[25%] lg:p-0">
-                            <input type="text" placeholder="First Name" name="first name input" onChange={(event) => {
-                                updateFirstName(event.target.value)}}
+                            <input type="text" placeholder="First Name" name="first name input" onChange={(event) => {updateFirstName(event.target.value)}}
                             className="placeholder-background-primary bg-background-secondary h-10 w-full rounded-lg pl-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary" />
-                            <span className="absolute w-full h-10 border-1 text-center border-background-secondary text-sm bg-red-400 left-0 bottom-0 translate-y-[90%] rounded-xl"
-                            style={{display: `${firstNameError === true || !firstNameError ? `none` : `block`}`}}>{firstNameError}</span>
+                            <InputError error={firstNameError} />
                         </div>
-                        <div className="last-name-container w-[50%] pl-[4%] pr-[4%] lg:w-[25%] lg:p-0">
-                            <input type="text" placeholder="Last Name" name="last name input"
+                        <div className="last-name-container relative w-[50%] pl-[4%] pr-[4%] lg:w-[25%] lg:p-0">
+                            <input type="text" placeholder="Last Name" name="last name input" onChange={(event) => {updateLastName(event.target.value)}}
                             className="placeholder-background-primary bg-background-secondary h-10 w-full rounded-lg pl-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary" />
+                            <InputError error={lastNameError} />
                         </div>
                     </div>
-                    <div className="user-email-container w-full pt-[4%] flex justify-center">
-                        <input type="email" placeholder="Email" name="email input"
+                    <div className="user-email-container relative w-full pt-[4%] flex justify-center">
+                        <input type="email" placeholder="Email" name="email input" onChange={(event) => {updateEmail(event.target.value)}}
                         className="placeholder-background-primary bg-background-secondary h-10 w-[calc(100%-8%)] rounded-lg pl-[4%] pr-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary
                         lg:w-[51%]" />
+                            <InputError error={emailError} />
                     </div>
                     <div className="user-password-container w-full pt-[4%] flex justify-center">
                         <input type="password" placeholder="Password" name="password input"
