@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { validateEmail, validateFirstName, validateLastName } from '../utils/validate.js';
+import { validateEmail, validateFirstName, validateLastName, validatePassword } from '../utils/validate.js';
 
 function useFormLogic() {
 
@@ -14,6 +14,7 @@ function useFormLogic() {
     const [firstNameError, setFirstNameError] = useState('');
     const [lastNameError, setLastNameError] = useState('');
     const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
     const toggleChecked = () => {
         setChecked(prev => !prev);
@@ -57,6 +58,18 @@ function useFormLogic() {
         setEmailError(() => validateEmail(email));
     }, [email]);
 
+    const updatePassword = (userInput) => {
+        setPassword(userInput);
+    }
+
+    useEffect(() => {
+        if(validatePassword(password) === true) {
+            setPasswordError('');
+            return;
+        }
+        setPasswordError(() => validatePassword(password));
+    }, [password]);
+
     return {
         checked,
         toggleChecked,
@@ -66,6 +79,8 @@ function useFormLogic() {
         lastNameError,
         updateEmail,
         emailError,
+        updatePassword,
+        passwordError,
     };
 }
 

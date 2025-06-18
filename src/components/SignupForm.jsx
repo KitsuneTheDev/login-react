@@ -63,7 +63,7 @@ SignupForm.Mobile = () => {
 
 SignupForm.Default =  () => {
 
-    const {checked, toggleChecked, updateFirstName, firstNameError, updateLastName, lastNameError, updateEmail, emailError} = useFormLogic();
+    const {checked, toggleChecked, updateFirstName, firstNameError, updateLastName, lastNameError, updateEmail, emailError, updatePassword, passwordError} = useFormLogic();
     
     return(
         <div className="outer-container w-full h-full lg:w-[80%] lg:h-[80%] lg:bg-background-primary
@@ -85,25 +85,30 @@ SignupForm.Default =  () => {
                         <div className="first-name-container relative w-[50%] pl-[4%] pr-[4%]
                         lg:w-[25%] lg:p-0">
                             <input type="text" placeholder="First Name" name="first name input" onChange={(event) => {updateFirstName(event.target.value)}}
-                            className="placeholder-background-primary bg-background-secondary h-10 w-full rounded-lg pl-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary" />
-                            <InputError error={firstNameError} />
+                            className="placeholder-background-primary bg-background-secondary h-10 w-full rounded-lg pl-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary"
+                            style={{backgroundColor: `${firstNameError ? `#EF5350` : ''}`, color:`${firstNameError ? `black` : ``}`}} />
+                            <InputError.Inner error={firstNameError} />
                         </div>
                         <div className="last-name-container relative w-[50%] pl-[4%] pr-[4%] lg:w-[25%] lg:p-0">
                             <input type="text" placeholder="Last Name" name="last name input" onChange={(event) => {updateLastName(event.target.value)}}
-                            className="placeholder-background-primary bg-background-secondary h-10 w-full rounded-lg pl-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary" />
-                            <InputError error={lastNameError} />
+                            className="placeholder-background-primary bg-background-secondary h-10 w-full rounded-lg pl-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary"
+                            style={{backgroundColor: `${lastNameError ? `#EF5350` : ''}`, color:`${lastNameError ? `black` : ``}`}} />
+                            <InputError.Inner error={lastNameError} />
                         </div>
                     </div>
                     <div className="user-email-container relative w-full pt-[4%] flex justify-center">
                         <input type="email" placeholder="Email" name="email input" onChange={(event) => {updateEmail(event.target.value)}}
                         className="placeholder-background-primary bg-background-secondary h-10 w-[calc(100%-8%)] rounded-lg pl-[4%] pr-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary
-                        lg:w-[51%]" />
-                            <InputError error={emailError} />
+                        lg:w-[51%]"
+                        style={{backgroundColor: `${emailError ? `#EF5350` : ''}`, color:`${emailError ? `black` : ``}`}} />
+                        <InputError.Default error={emailError} />
                     </div>
-                    <div className="user-password-container w-full pt-[4%] flex justify-center">
-                        <input type="password" placeholder="Password" name="password input"
+                    <div className="user-password-container relative w-full pt-[4%] flex justify-center">
+                        <input type="password" placeholder="Password" name="password input" onChange={(event) => {updatePassword(event.target.value)}}
                         className="placeholder-background-primary bg-background-secondary h-10 w-[calc(100%-8%)] rounded-lg pl-[4%] pr-[4%] font-bold focus:outline-1 outline-offset-2 outline-background-secondary text-background-primary
-                        lg:w-[51%]" />
+                        lg:w-[51%]"
+                        style={{backgroundColor: `${passwordError ? `#EF5350` : ''}`, color:`${passwordError ? `black` : ``}`}} />
+                        <InputError.Default error={passwordError} />    
                     </div>
                     <div className="terms-conditions-container h-10 pt-[4%] pl-[4%]
                     lg:pl-[24.5%]">
