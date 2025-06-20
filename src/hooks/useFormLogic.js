@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { validateEmail, validateFirstName, validateLastName, validatePassword } from '../utils/validate.js';
+import { useHandleSubmit } from './useHandleSubmit.js';
 
 function useFormLogic() {
 
@@ -9,12 +10,29 @@ function useFormLogic() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [mode, setMode] = useState('');
 
     //INVALID FORM INPUT ERROR HOOKS
     const [firstNameError, setFirstNameError] = useState('');
     const [lastNameError, setLastNameError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [submitError, setSubmitError] = useState('');
+
+    // VALID HOOKS
+    const [firstNameValid, setFirstNameValid] = useState(false);
+    const [lastNameValid, setLastNameValid] = useState(false);
+    const [emailValid, setEmailValid] = useState(false);
+    const [passwordValid, setPasswordValid] = useState(false);
+
+    const { handleSubmit } = useHandleSubmit({
+        mode,
+        firstName,
+        lastName,
+        email,
+        password,
+        checked,
+    });
 
     const toggleChecked = () => {
         setChecked(prev => !prev);
@@ -27,10 +45,12 @@ function useFormLogic() {
 
     useEffect(() => {
         if(validateFirstName(firstName) === true) {
+            setFirstNameValid(true);
             setFirstNameError('');
             return;
         }
         setFirstNameError(() => validateFirstName(firstName));
+        setFirstNameValid(false);
         console.log(firstNameError);
     }, [firstName]);
 
@@ -40,10 +60,12 @@ function useFormLogic() {
 
     useEffect(() => {
         if(validateLastName(lastName) === true) {
+            setLastNameValid(true);
             setLastNameError('');
             return;
         }
         setLastNameError(() => validateLastName(lastName));
+        setLastNameValid(false);
     }, [lastName]);
 
     const updateEmail = (userInput) => {
@@ -52,10 +74,12 @@ function useFormLogic() {
 
     useEffect(() => {
         if(validateEmail(email) === true) {
+            setEmailValid(true);
             setEmailError('');
             return;
         }
         setEmailError(() => validateEmail(email));
+        setEmailValid(false);
     }, [email]);
 
     const updatePassword = (userInput) => {
@@ -64,10 +88,12 @@ function useFormLogic() {
 
     useEffect(() => {
         if(validatePassword(password) === true) {
+            setPasswordValid(true);
             setPasswordError('');
             return;
         }
         setPasswordError(() => validatePassword(password));
+        setPasswordValid(false);
     }, [password]);
 
     return {
@@ -81,6 +107,8 @@ function useFormLogic() {
         emailError,
         updatePassword,
         passwordError,
+        setMode,
+        handleSubmit,
     };
 }
 

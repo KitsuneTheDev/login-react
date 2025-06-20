@@ -1,18 +1,16 @@
 export function validateFirstName(firstNameInput) {
     const firstNameRegex = /^[a-zA-ZçÇğĞıİöÖşŞüÜ\s-]{3,30}$/u;
     if(firstNameInput === '' || firstNameInput === undefined)  return;
-    const trimmed = firstNameInput.trim();
-    if(!trimmed) return "This field is required";
-    if(!firstNameRegex.test(trimmed)) return "Only letters & spaces (3-30)";
+    if(!firstNameInput || firstNameInput.trim().length === 0) return "This field is required";
+    if(!firstNameRegex.test(firstNameInput)) return "Only letters & spaces (3-30)";
     return true; 
 }
 
 export function validateLastName(lastNameInput) {
     const lastNameRegex = /^[a-zA-ZçÇğĞıİöÖşŞüÜ\s-]{3,30}$/u;
     if(lastNameInput === '' || lastNameInput === undefined)  return;
-    const trimmed = lastNameInput.trim();
-    if(!trimmed) return "This field is required";
-    if(!lastNameRegex.test(trimmed)) return "Only letters & spaces (3-30)";
+    if(!lastNameInput || lastNameInput.trim().length === 0) return "This field is required";
+    if(!lastNameRegex.test(lastNameInput)) return "Only letters & spaces (3-30)";
     return true; 
 }
 

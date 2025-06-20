@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import CustomCheckbox from "./CustomCheckbox.jsx";
 import InputError from "./InputError.jsx";
 import { useFormLogic } from '../hooks/useFormLogic.js';
@@ -7,8 +7,12 @@ function SignupForm() {}
 
 SignupForm.Mobile = () => {
 
-    const { checked, toggleChecked, updateFirstName, firstNameError, updateLastName } = useFormLogic();
+    const { checked, toggleChecked, updateFirstName, firstNameError, updateLastName, lastNameError, updateEmail, emailError, updatePassword, passwordError, handleSubmit, setMode } = useFormLogic();
     
+    useEffect(() => {
+        setMode('signup');
+    }, [])
+
     return(
         <div className="signup-container h-full w-full bg-background-primary flex flex-col justify-center items-center">
             <div className="info-container w-full h-[10%] bg-element-background-primary flex flex-col items-start justify-center pl-[4%]">
@@ -17,22 +21,30 @@ SignupForm.Mobile = () => {
             </div>
             <form action="#" className="signup-form w-fullw h-[50%] text-background-primary font-medium flex flex-col gap-5 pt-[calc()]">
                 <div className="user-name-container flex gap-2">
-                    <div className="first-name-container">
-                        <input type="text" name="user first name" id="userFirstName" placeholder="First name"
-                        className="bg-background-secondary h-10 rounded-lg placeholder-background-primary pl-2 focus:outline-2 focus:outline-background-secondary/70" />
+                    <div className="first-name-container relative">
+                        <input type="text" name="user first name" id="userFirstName" placeholder="First name" onChange={(event) => updateFirstName(event.target.value)}
+                        className="bg-background-secondary h-10 rounded-lg placeholder-background-primary pl-2 focus:outline-2 focus:outline-background-secondary/70"
+                        style={{backgroundColor: `${firstNameError ? `#EF5350` : ``}`, color: `${firstNameError ? `black` : ``}`}} />
+                        <InputError.Inner error={firstNameError} />
                     </div>
                     <div className="last-name-container">
                         <input type="text" name="user last name" id="userLastName" placeholder="Last Name" onChange={(event) => {updateLastName(event.target.value)}}
-                        className="bg-background-secondary h-10 rounded-lg placeholder-background-primary pl-2 focus:outline-2 focus:outline-background-secondary/70" />
+                        className="bg-background-secondary h-10 rounded-lg placeholder-background-primary pl-2 focus:outline-2 focus:outline-background-secondary/70"
+                        style={{backgroundColor: `${lastNameError ? `#EF5350` : ``}`, color: `${lastNameError ? `black` : ``}`}} />
+                        <InputError.Inner error={lastNameError} />
                     </div>
                 </div>
                 <div className="user-email-container pt-4">
-                        <input type="email" name="user email input" id="userEmailInput" placeholder="Email"
-                        className="bg-background-secondary h-10 rounded-lg w-full placeholder-background-primary pl-2 focus:outline-2 focus:outline-background-secondary/70"/>
+                        <input type="email" name="user email input" id="userEmailInput" placeholder="Email" onChange={(event) => updateEmail(event.target.value)}
+                        className="bg-background-secondary h-10 rounded-lg w-full placeholder-background-primary pl-2 focus:outline-2 focus:outline-background-secondary/70"
+                        style={{backgroundColor: `${emailError ? `#EF5350` : ``}`, color: `${emailError ? `black` : ``}`}}/>
+                        <InputError.Default error={emailError} />
                 </div>
                 <div className="user-password-container pt-4">
-                        <input type="password" name="user password input" id="userPasswordInput" placeholder="Enter your password"
-                        className="bg-background-secondary h-10 rounded-lg w-full placeholder-background-primary pl-2 focus:outline-2 focus:outline-background-secondary/70"/>
+                        <input type="password" name="user password input" id="userPasswordInput" placeholder="Enter your password" onChange={(event) => updatePassword(event.target.value)}
+                        className="bg-background-secondary h-10 rounded-lg w-full placeholder-background-primary pl-2 focus:outline-2 focus:outline-background-secondary/70"
+                        style={{backgroundColor: `${passwordError ? `#EF5350` : ``}`, color: `${passwordError ? `black` : ``}`}}/>
+                        <InputError.Default error={passwordError} />
                 </div>
                 <div className="terms-conditions-container pt-4">
                     <CustomCheckbox checked={checked} onChange={() => toggleChecked()} >
@@ -40,7 +52,8 @@ SignupForm.Mobile = () => {
                     </CustomCheckbox>
                 </div>
                 <div className="submit-button-container pt-4 w-full flex items-center justify-center">
-                    <button type="submit" className="bg-text w-[60%] h-10 rounded-lg outline-2 outline-offset-1 outline-background-secondary active:scale-[95%]">Create Account</button>
+                    <button type="submit" onClick={handleSubmit}
+                    className="bg-text w-[60%] h-10 rounded-lg outline-2 outline-offset-1 outline-background-secondary active:scale-[95%]">Create Account</button>
                 </div>
             </form>
             <div className="signup-with-container w-full h-[40%]">
@@ -63,8 +76,12 @@ SignupForm.Mobile = () => {
 
 SignupForm.Default =  () => {
 
-    const {checked, toggleChecked, updateFirstName, firstNameError, updateLastName, lastNameError, updateEmail, emailError, updatePassword, passwordError} = useFormLogic();
+    const {checked, toggleChecked, updateFirstName, firstNameError, updateLastName, lastNameError, updateEmail, emailError, updatePassword, passwordError, handleSubmit, setMode} = useFormLogic();
     
+    useEffect(() => {
+        setMode('signup');
+    }, []);
+
     return(
         <div className="outer-container w-full h-full lg:w-[80%] lg:h-[80%] lg:bg-background-primary
         lg:rounded-2xl lg:outline-2 lg:outline-background-primary lg:outline-offset-2
@@ -119,6 +136,7 @@ SignupForm.Default =  () => {
                     <div className="submit-button-container w-full h-10 flex justify-center mt-8
                     lg:mt-16">
                         <button
+                        type="submit" onClick={handleSubmit}
                         className="submit-button w-[50%] bg-text text-background-primary rounded-xl outline-2 outline-background-secondary outline-offset-2 hover:cursor-pointer">
                             Create Account
                         </button>
@@ -145,3 +163,8 @@ SignupForm.Default =  () => {
 }
 
 export default SignupForm;
+
+/*
+ TODO:
+ -- ON SUBMIT CLEAR THE FORM
+*/
