@@ -8,7 +8,7 @@ function SignupForm() {}
 SignupForm.Mobile = () => {
 
     const { checked, toggleChecked, updateFirstName, firstNameError, updateLastName, lastNameError, updateEmail, emailError, updatePassword, passwordError, handleSubmit, setMode } = useFormLogic();
-    
+
     useEffect(() => {
         setMode('signup');
     }, [])
@@ -63,7 +63,8 @@ SignupForm.Mobile = () => {
                     <div className="w-[30%] h-5 flex items-center justify-center" ><hr className="w-full text-background-secondary"/></div>
                 </div>
                 <div className="signup-with-google relative flex justify-center items-center pt-8 text-2xl text-background-primary">
-                    <button className="w-[90%] h-10 bg-background-secondary rounded-lg flex justify-center items-center font-medium outline-2 outline-background-secondary outline-offset-2 active:scale-[95%]">
+                    <button className="w-[90%] h-10 bg-background-secondary rounded-lg flex justify-center items-center font-medium outline-2 outline-background-secondary outline-offset-2 active:scale-[95%]"
+                    onClick={() => handleSubmitClick}>
                         <span className="w-10 h-10 inline-block absolute left-0 translate-x-[calc(50%+0.25rem)] bg-white rounded-lg text-background-secondary">
                             <span className="w-full h-full flex justify-center items-center text-2xl font-bold text-shadow-sm text-shadow-background-primary">G</span>
                         </span>

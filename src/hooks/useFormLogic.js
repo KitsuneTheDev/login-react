@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { validateEmail, validateFirstName, validateLastName, validatePassword } from '../utils/validate.js';
-import { useHandleSubmit } from './useHandleSubmit.js';
 
 function useFormLogic() {
 
@@ -24,15 +23,6 @@ function useFormLogic() {
     const [lastNameValid, setLastNameValid] = useState(false);
     const [emailValid, setEmailValid] = useState(false);
     const [passwordValid, setPasswordValid] = useState(false);
-
-    const { handleSubmit } = useHandleSubmit({
-        mode,
-        firstName,
-        lastName,
-        email,
-        password,
-        checked,
-    });
 
     const toggleChecked = () => {
         setChecked(prev => !prev);
@@ -96,6 +86,19 @@ function useFormLogic() {
         setPasswordValid(false);
     }, [password]);
 
+    const handleSubmitClick = () => {
+        setFormData({
+            firstName,
+            lastName,
+            email,
+            password,
+            mode,
+            checked,
+            isValid:
+                emailValid && passwordValid && (mode === 'login' || (firstNameValid, lastNameValid, checked)),
+        });
+    };
+
     return {
         checked,
         toggleChecked,
@@ -108,7 +111,7 @@ function useFormLogic() {
         updatePassword,
         passwordError,
         setMode,
-        handleSubmit,
+        handleSubmitClick,
     };
 }
 
