@@ -1,10 +1,13 @@
 import Navbar from './Navbar.jsx';
 import { useUser } from '../context/UserContext.jsx';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 function Layout() {
     
     const { emailConfirmed, formData, user } = useUser();
+    const navigate = useNavigate();
+
+    if(!user) navigate("/signup");
 
     return(
         <div className='min-h-[100%] min-w-[100%] h-[100%] w-[100%] box-border'>
