@@ -1,19 +1,18 @@
-import { useState } from 'react';
 import Navbar from './Navbar.jsx';
-import SignupForm from './SignupForm.jsx';
+import { useUser } from '../context/UserContext.jsx';
+import { Outlet } from 'react-router-dom';
 
 function Layout() {
-
-    const isMobile = /mobile/i.test(navigator.userAgent);
-    console.log("isMobile -->", /*isMobile,*/ /mobile/i.test(navigator.userAgent), "device type is -->", navigator.userAgent);
     
+    const { emailConfirmed, formData, user } = useUser();
+
     return(
         <div className='min-h-[100%] min-w-[100%] h-[100%] w-[100%] box-border'>
             <header className="bg-background-secondary w-full h-[8%]">
-                {isMobile ? <Navbar.Mobile /> : <Navbar.Default />}
+                <Navbar />
             </header>
             <main className="bg-background-primary w-full h-[86.2%] outline-2 outline-background-primary lg:bg-background-secondary lg:flex lg:justify-center lg:items-center">
-                {isMobile ? <SignupForm.Mobile /> : <SignupForm.Default />}
+                <Outlet />
             </main>
             <footer className="bg-background-secondary w-full h-[5.8%] border-t-1 border-accent flex justify-between">
                 <span className='text-element-text text-xs pl-[4%] pt-[2%] h-full text-background-primary font-medium

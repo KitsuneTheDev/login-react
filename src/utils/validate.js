@@ -29,4 +29,5 @@ export function validatePassword(passwordInput) {
     const trimmed = passwordInput.trim();
     if(!trimmed) return "This field is required";
     if(!passwordRegex.test(trimmed)) return "Password must be 7–15 characters long and include at least one uppercase letter, one number, and one special character(! @ # $ % ^ & * - _ + =). No spaces allowed."
+    return true;
 }

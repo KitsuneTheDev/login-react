@@ -1,7 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { validateEmail, validateFirstName, validateLastName, validatePassword } from '../utils/validate.js';
+import { useUser } from "../context/UserContext.jsx";
 
 function useFormLogic() {
+
+    const { setFormData } = useUser();
 
     // FORM INPUT HOOKS
     const [checked, setChecked] = useState(false);
@@ -86,7 +89,7 @@ function useFormLogic() {
         setPasswordValid(false);
     }, [password]);
 
-    const handleSubmitClick = () => {
+    useEffect(() => {
         setFormData({
             firstName,
             lastName,
@@ -94,10 +97,8 @@ function useFormLogic() {
             password,
             mode,
             checked,
-            isValid:
-                emailValid && passwordValid && (mode === 'login' || (firstNameValid, lastNameValid, checked)),
         });
-    };
+    }, [firstName, lastName, email, password, checked, mode])
 
     return {
         checked,
@@ -111,7 +112,10 @@ function useFormLogic() {
         updatePassword,
         passwordError,
         setMode,
-        handleSubmitClick,
+        firstNameValid,
+        lastNameValid,
+        emailValid,
+        passwordValid,
     };
 }
 
