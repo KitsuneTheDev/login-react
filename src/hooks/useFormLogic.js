@@ -4,8 +4,6 @@ import { useUser } from "../context/UserContext.jsx";
 
 function useFormLogic() {
 
-    const { setFormData } = useUser();
-
     // FORM INPUT HOOKS
     const [checked, setChecked] = useState(false);
     const [firstName, setFirstName] = useState('');
@@ -88,17 +86,6 @@ function useFormLogic() {
         setPasswordError(() => validatePassword(password));
         setPasswordValid(false);
     }, [password]);
-
-    useEffect(() => {
-        setFormData({
-            firstName,
-            lastName,
-            email,
-            password,
-            mode,
-            checked,
-        });
-    }, [firstName, lastName, email, password, checked, mode])
 
     return {
         checked,

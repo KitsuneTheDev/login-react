@@ -4,17 +4,10 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 function Layout() {
-    
-    const { emailConfirmed, formData, user } = useUser();
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if(!user) navigate("/signup");
-    }, [])
 
     return(
         <div className='min-h-[100%] min-w-[100%] h-[100%] w-[100%] box-border'>
-            <header className="bg-background-secondary w-full h-[8%]">
+            <header className="bg-background-secondary w-full h-[8%] ">
                 <Navbar />
             </header>
             <main className="bg-background-primary w-full h-[86.2%] outline-2 outline-background-primary lg:bg-background-secondary lg:flex lg:justify-center lg:items-center">
