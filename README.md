@@ -1,4 +1,4 @@
-# Login Form - Responsive React App
+# Login Form - Responsive React App - Supabase
 
 This is a fully responsive login form built with **React** and **Tailwind CSS**.  
 The design adapts across different screen sizes:  
@@ -10,6 +10,7 @@ The design adapts across different screen sizes:
 
 - Responsive layout (mobile-first, 3 breakpoints)
 - Clean and modular component structure
+- Saving users on supabase
 - Mobile & desktop login views
 - Tailwind CSS for rapid styling
 - Email/password input fields (ready for integration)
