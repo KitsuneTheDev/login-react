@@ -16,23 +16,11 @@ The design adapts across different screen sizes:
 - Email/password input fields (ready for integration)
 - Simple and production-ready design
 
-## 📸 Screenshots
-
-* Mobile Devices
-
-![Mobile Design](./src/assets/demo/mobilesignupform.png)
-
-* Web - Mobile
-
-![Web Small Design](./src/assets/demo/webLookSm.png)
-
-* Web - Tablet
-
-![Web Medium Design](./src/assets/demo/webLookMd.png)
-
-* Web - Desktop
-
-![Web Large Design](./src/assets/demo/webLookLg.png)
+## 📸 Demos
+![obale](/src/assets/demo/obale_1.png)
+![obale](/src/assets/demo/obale_2.png)
+![obale](/src/assets/demo/mobale_1.png)
+![obale](/src/assets/demo/mobale_2.png)
 
 ## 🛠️ Technologies
 
